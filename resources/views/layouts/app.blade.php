@@ -42,7 +42,7 @@
                         <a class="nav-link" href={{ url('/tasks')}}>TaskList</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href={{ url('/grocery')}}>Groceries</a>
+                        <a class="nav-link" href={{ url('/grocerylist')}}>Groceries</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">

@@ -26,7 +26,7 @@ class GroceryListController extends Controller
     {
         return view('grocerylist', [
             'grocery_items' => Grocery::orderBy('created_at', 'asc')->get()
-        ]);
+        ])->with('autofocus', true);
     }
 
     /**
@@ -40,7 +40,7 @@ class GroceryListController extends Controller
         $itemid->isActive = 1;
         $itemid->save();
 
-        return redirect('/grocerylist');
+        return redirect('/grocerylist')->with('autofocus', true);
     }
 
     /**
@@ -55,7 +55,7 @@ class GroceryListController extends Controller
         $itemid->isActive = 0;
         $itemid->save();
 
-        return redirect('/grocerylist');
+        return redirect('/grocerylist')->with('autofocus', true);
     }
 
     /**
@@ -64,9 +64,15 @@ class GroceryListController extends Controller
      * @param  \App\Grocery  $grocery
      * @return \Illuminate\Http\Response
      */
-    public function show(Grocery $grocery)
+    public function newList()
     {
-        //
+        Grocery::where('isActive', 1)
+            ->update(['isActive' => 0]);
+
+        Grocery::where('isClicked', 1)
+            ->update(['isClicked' => 0]);
+
+        return redirect('/grocerylist')->with('autofocus', true);
     }
 
     /**
@@ -75,9 +81,13 @@ class GroceryListController extends Controller
      * @param  \App\Grocery  $grocery
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grocery $grocery)
+    public function setClicked($id)
     {
-        //
+        $itemid = Grocery::findOrFail($id);
+        $itemid->isClicked = 1;
+        $itemid->save();
+
+        return redirect('/grocerylist')->with('autofocus', true);
     }
 
     /**

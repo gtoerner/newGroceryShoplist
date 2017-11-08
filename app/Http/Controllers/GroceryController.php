@@ -27,7 +27,7 @@ class GroceryController extends Controller
     {
         return view('grocery', [
             'grocery_items' => Grocery::orderBy('created_at', 'asc')->get()
-        ]);
+        ])->with('autofocus', true);
     }
 
     /**
@@ -55,14 +55,15 @@ class GroceryController extends Controller
         if ($validator->fails()) {
             return redirect('/grocery')
                 ->withInput()
-                ->withErrors($validator);
+                ->withErrors($validator)
+                ->with('autofocus', true);
         }
 
         $item = new Grocery;
         $item->name = $request->name;
         $item->save();
 
-        return redirect('/grocery');
+        return redirect('/grocery')->with('autofocus', true);
     }
 
     /**
@@ -114,6 +115,6 @@ class GroceryController extends Controller
     {
         Grocery::findOrFail($id)->delete();
 
-        return redirect('/grocery');
+        return redirect('/grocery')->with('autofocus', true);
     }
 }

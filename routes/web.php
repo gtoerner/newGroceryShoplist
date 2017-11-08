@@ -19,7 +19,9 @@ Route::post('grocer', 'GroceryController@store')->name('grocery');
 Route::delete('/grocer/{id}', 'GroceryController@deleteGroceryItem')->name('grocery');
 
 Route::post('grocerlist', 'GroceryListController@setActive')->name('grocerylist');
+Route::post('grocernewlist', 'GroceryListController@newList')->name('grocerylist');
 Route::post('grocerlist/{id}', 'GroceryListController@removeActive')->name('grocerylist');
+Route::post('grocerisClicked/{id}', 'GroceryListController@setClicked')->name('grocerylist');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
