@@ -46,14 +46,26 @@
                                 <div class="form-group">
                                     <label for="task-name" class="col-sm-3 control-label">choose item to add</label>
 
+
+
+
                                     <div class="col-sm-6">
+
                                         <select name="id" size="4">
+                                            @foreach($category_items as $c_item)
+                                            <optgroup label="{{ $c_item->name }}">
                                             @foreach ($grocery_items as $items)
-                                                @if ($items->isActive == 0)
+                                                @if ($items->isActive == 0 )
+                                                    @if ($items->category == $c_item->name)
                                                     <option value={{ $items->id }}>{{ $items->name }}</option>
+                                                    @endif
                                                 @endif
                                             @endforeach
+                                            </optgroup>
+                                            @endforeach
                                         </select>
+
+
                                     </div>
                                 </div>
 
@@ -71,7 +83,7 @@
                                 <table class="table table-striped task-table">
                                     <thead>
                                     <th>Current Grocery List:</th>
-                                    <th>&nbsp;</th>
+                                    <th>Category</th>
                                     </thead>
                                     <tbody>
                                     @foreach ($grocery_items as $items)
@@ -85,10 +97,14 @@
                                                         @if ($items->isClicked == 0)
                                                             <button type="submit" class="button2">
                                                                 {{ $items->name }}
+                                                                <td class="table-text"><div>{{ $items->category }}</div></td>
                                                             </button>
                                                         @else
                                                             <button type="submit" class="button2">
-                                                                <s>{{ $items->name }}</s>
+                                                                <s>
+                                                                    {{ $items->name }}
+                                                                    <td class="table-text"><div>{{ $items->category }}</div></td>
+                                                                </s>
                                                             </button>
                                                         @endif
                                                     </form>
