@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Grocery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,9 +26,14 @@ class GroceryController extends Controller
      */
     public function index()
     {
+/*
         return view('grocery', [
-            'grocery_items' => Grocery::orderBy('created_at', 'asc')->get()
+            'grocery_items' => Grocery::orderBy('name', 'asc')->get()
         ])->with('autofocus', true);
+*/
+        return View('grocery')
+            ->with('grocery_items', Grocery::orderBy('category', 'asc')->get() )
+            ->with('category_items', Category::orderBy('name', 'asc')->get() );
     }
 
     /**
@@ -50,6 +56,9 @@ class GroceryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
+            'category' => array('required',
+                                'max:255',
+                                'regex:/^((?!Categor).)*$/u')
         ]);
 
         if ($validator->fails()) {
@@ -61,6 +70,7 @@ class GroceryController extends Controller
 
         $item = new Grocery;
         $item->name = $request->name;
+        $item->category = $request->category;
         $item->save();
 
         return redirect('/grocery')->with('autofocus', true);

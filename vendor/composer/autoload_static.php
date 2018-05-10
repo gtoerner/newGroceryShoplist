@@ -311,6 +311,7 @@ class ComposerStaticInit7310dfa289215286dc617881cbf91fd4
         'App\\Http\\Controllers\\GroceryController' => __DIR__ . '/../..' . '/app/Http/Controllers/GroceryController.php',
         'App\\Http\\Controllers\\GroceryListController' => __DIR__ . '/../..' . '/app/Http/Controllers/GroceryListController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\TasksController' => __DIR__ . '/../..' . '/app/Http/Controllers/TasksController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',

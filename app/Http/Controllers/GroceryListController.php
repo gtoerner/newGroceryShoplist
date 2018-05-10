@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Grocery;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GroceryListController extends Controller
 {
@@ -24,9 +26,14 @@ class GroceryListController extends Controller
      */
     public function index()
     {
+/*
         return view('grocerylist', [
-            'grocery_items' => Grocery::orderBy('created_at', 'asc')->get()
+            'grocery_items' => Grocery::orderBy('name', 'asc')->get()
         ])->with('autofocus', true);
+*/
+        return View('grocerylist')
+            ->with('grocery_items', Grocery::orderBy('category', 'asc')->get() )
+            ->with('category_items', Category::orderBy('name', 'asc')->get() );
     }
 
     /**

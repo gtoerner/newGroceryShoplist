@@ -12,6 +12,10 @@
                         If you need to add/delete items from the master list,
                         then click <a href={{ url('/grocery')}}>HERE</a>
                     </div>
+                    <div>
+                        If you need to add/delete items from the master Category list,
+                        then click <a href={{ url('/add_category')}}>HERE</a>
+                    </div>
 
                     @if (count($grocery_items) > 0)
                         <div class="panel panel-default">

@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\GroceryController' => $baseDir . '/app/Http/Controllers/GroceryController.php',
     'App\\Http\\Controllers\\GroceryListController' => $baseDir . '/app/Http/Controllers/GroceryListController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\TasksController' => $baseDir . '/app/Http/Controllers/TasksController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',

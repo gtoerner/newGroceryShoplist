@@ -5,14 +5,14 @@
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Grocery - Dashboard
+                    Grocery Category List - Dashboard
                     <div>
-                        This page is the Master List & used only to add/delete items from the overall general list<br>
+                        This page is the Master Category List & used only to add/delete items from the overall general list<br>
                         To create a new shopping list click <a href={{ url('/grocerylist')}}>HERE</a>
                     </div>
                     <div>
-                        If you need to add/delete items from the master Category list,
-                        then click <a href={{ url('/add_category')}}>HERE</a>
+                        If you need to add/delete items from the master list,
+                        then click <a href={{ url('/grocery')}}>HERE</a>
                     </div>
                 </div>
 
@@ -21,27 +21,15 @@
                 @include('common.errors')
 
                 <!-- New Task Form -->
-                    <form action="{{ url('grocer')}}" method="POST" class="form-horizontal">
+                    <form action="{{ url('categ')}}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">Choose Category: </label>
-                            <div>
-                                <select name="category">
-                                    <option value="Choose Category">Choose Category</option>
-                                    @foreach($category_items as $c_item)
-                                        <option value="{{ $c_item->name }}">{{ $c_item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
 
                     <!-- Task Name -->
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">new grocery item</label>
+                            <label for="task-name" class="col-sm-3 control-label">new grocery category item</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('grocer') }}">
+                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('categ') }}">
                             </div>
                         </div>
 
@@ -49,7 +37,7 @@
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-btn fa-plus"></i>Add New Grocery Item
+                                    <i class="fa fa-btn fa-plus"></i>Add New Category Item
                                 </button>
                             </div>
                         </div>
@@ -58,28 +46,26 @@
             </div>
 
             <!-- Current Tasks -->
-            @if (count($grocery_items) > 0)
+            @if (count($category_items) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Grocery Items
+                        Current Category Items
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
-                            <th>Grocery Items:</th>
-                            <th>Category</th>
-
+                            <th>Category Items:</th>
+                            <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                            @foreach ($grocery_items as $items)
+                            @foreach ($category_items as $items)
                                 <tr>
                                     <td class="table-text"><div>{{ $items->name }}</div></td>
-                                    <td class="table-text"><div>{{ $items->category }}</div></td>
 
                                     <!-- Task Delete Button -->
                                     <td>
-                                        <form action="{{ url('grocer/'.$items->id) }}" method="POST">
+                                        <form action="{{ url('categ/'.$items->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 
